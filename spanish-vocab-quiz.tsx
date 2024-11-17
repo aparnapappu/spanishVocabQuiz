@@ -146,131 +146,131 @@ const motivationalPhrases = [
 const emojis = ['🌟', '⭐', '🎉', '👏', '🎈', '🎊', '🌈', '✨', '💫', '🦄', '🌺', '🌸', '🎯', '🏆', '💪'];
 
 function SpanishQuiz() {
-const normalizeText = (text) => {
-  return text
-    .toLowerCase()
-    .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '')
-    .replace(/\s+/g, ' ')
-    .trim();
-};
-
-const areSimilar = (str1, str2) => {
-  const norm1 = normalizeText(str1);
-  const norm2 = normalizeText(str2);
-
-  // Remove common words that don't affect meaning
-  const removeCommonWords = (text) => {
-    return text.replace(/\b(the|to|a|an|in|on|at|for|of|with)\b/g, '').trim();
+  const normalizeText = (text) => {
+    return text
+      .toLowerCase()
+      .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
   };
-
-  const clean1 = removeCommonWords(norm1);
-  const clean2 = removeCommonWords(norm2);
-
-  // Split into words and check overlap
-  const words1 = new Set(clean1.split(' '));
-  const words2 = new Set(clean2.split(' '));
   
-  const intersection = new Set([...words1].filter(x => words2.has(x)));
-  const union = new Set([...words1, ...words2]);
+  const areSimilar = (str1, str2) => {
+    const norm1 = normalizeText(str1);
+    const norm2 = normalizeText(str2);
   
-  return intersection.size / union.size >= 0.7;
-};
-
-const getRandomItem = (array) => {
-  return array[Math.floor(Math.random() * array.length)];
-};
-
-const SpanishVocabQuiz = () => {
-  const [currentWord, setCurrentWord] = useState('');
-  const [userAnswer, setUserAnswer] = useState('');
-  const [feedback, setFeedback] = useState('');
-  const [showAnswer, setShowAnswer] = useState(false);
-
-  const getNewWord = () => {
-    const words = Object.keys(vocabularyData);
-    const newWord = words[Math.floor(Math.random() * words.length)];
-    setCurrentWord(newWord);
-    setUserAnswer('');
-    setFeedback('');
-    setShowAnswer(false);
+    // Remove common words that don't affect meaning
+    const removeCommonWords = (text) => {
+      return text.replace(/\b(the|to|a|an|in|on|at|for|of|with)\b/g, '').trim();
+    };
+  
+    const clean1 = removeCommonWords(norm1);
+    const clean2 = removeCommonWords(norm2);
+  
+    // Split into words and check overlap
+    const words1 = new Set(clean1.split(' '));
+    const words2 = new Set(clean2.split(' '));
+    
+    const intersection = new Set([...words1].filter(x => words2.has(x)));
+    const union = new Set([...words1, ...words2]);
+    
+    return intersection.size / union.size >= 0.7;
   };
-
-  const checkAnswer = () => {
-    const correctAnswer = vocabularyData[currentWord];
-    if (areSimilar(userAnswer, correctAnswer)) {
-      setFeedback(`¡Correcto! ${getRandomItem(emojis)}`);
+  
+  const getRandomItem = (array) => {
+    return array[Math.floor(Math.random() * array.length)];
+  };
+  
+  const SpanishVocabQuiz = () => {
+    const [currentWord, setCurrentWord] = useState('');
+    const [userAnswer, setUserAnswer] = useState('');
+    const [feedback, setFeedback] = useState('');
+    const [showAnswer, setShowAnswer] = useState(false);
+  
+    const getNewWord = () => {
+      const words = Object.keys(vocabularyData);
+      const newWord = words[Math.floor(Math.random() * words.length)];
+      setCurrentWord(newWord);
+      setUserAnswer('');
+      setFeedback('');
       setShowAnswer(false);
-    } else {
-      setFeedback(`${getRandomItem(motivationalPhrases)}`);
-      setShowAnswer(true);
-    }
-  };
-
-  // Initialize with a random word
-  React.useEffect(() => {
-    getNewWord();
-  }, []);
-
-  return (
-    <div className="min-h-screen bg-gray-100 p-4">
-      <Card className="max-w-lg mx-auto">
-        <CardHeader>
-          <CardTitle className="text-2xl text-center">Govind's Spanish Vocabulary Quiz</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="text-center">
-            <h2 className="text-xl font-bold mb-2">¿Qué significa?</h2>
-            <p className="text-2xl text-blue-600">{currentWord}</p>
-          </div>
-          
-          <div className="space-y-4">
-            <Input
-              type="text"
-              value={userAnswer}
-              onChange={(e) => setUserAnswer(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && checkAnswer()}
-              placeholder="Type the English meaning..."
-              className="w-full"
-            />
+    };
+  
+    const checkAnswer = () => {
+      const correctAnswer = vocabularyData[currentWord];
+      if (areSimilar(userAnswer, correctAnswer)) {
+        setFeedback(`¡Correcto! ${getRandomItem(emojis)}`);
+        setShowAnswer(false);
+      } else {
+        setFeedback(`${getRandomItem(motivationalPhrases)}`);
+        setShowAnswer(true);
+      }
+    };
+  
+    // Initialize with a random word
+    React.useEffect(() => {
+      getNewWord();
+    }, []);
+  
+    return (
+      <div className="min-h-screen bg-gray-100 p-4">
+        <Card className="max-w-lg mx-auto">
+          <CardHeader>
+            <CardTitle className="text-2xl text-center">Govind's Spanish Vocabulary Quiz</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="text-center">
+              <h2 className="text-xl font-bold mb-2">¿Qué significa?</h2>
+              <p className="text-2xl text-blue-600">{currentWord}</p>
+            </div>
             
-            <div className="flex gap-2">
-              <Button 
-                onClick={checkAnswer}
-                className="w-1/2"
-              >
-                Check Answer
-              </Button>
-              <Button 
-                onClick={getNewWord}
-                variant="outline"
-                className="w-1/2"
-              >
-                Next Word
-              </Button>
+            <div className="space-y-4">
+              <Input
+                type="text"
+                value={userAnswer}
+                onChange={(e) => setUserAnswer(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && checkAnswer()}
+                placeholder="Type the English meaning..."
+                className="w-full"
+              />
+              
+              <div className="flex gap-2">
+                <Button 
+                  onClick={checkAnswer}
+                  className="w-1/2"
+                >
+                  Check Answer
+                </Button>
+                <Button 
+                  onClick={getNewWord}
+                  variant="outline"
+                  className="w-1/2"
+                >
+                  Next Word
+                </Button>
+              </div>
             </div>
-          </div>
-
-          {feedback && (
-            <Alert>
-              <AlertDescription>{feedback}</AlertDescription>
-            </Alert>
-          )}
-
-          {showAnswer && (
-            <div className="mt-4 p-4 bg-gray-50 rounded-lg space-y-3">
-              <p className="font-semibold">The correct answer is: {vocabularyData[currentWord]}</p>
-              {exampleSentences[currentWord] && (
-                <p className="italic mt-2">
-                  Example: {exampleSentences[currentWord]}
-                </p>
-              )}
-            </div>
-          )}
-        </CardContent>
-      </Card>
-    </div>
-  );
-};
+  
+            {feedback && (
+              <Alert>
+                <AlertDescription>{feedback}</AlertDescription>
+              </Alert>
+            )}
+  
+            {showAnswer && (
+              <div className="mt-4 p-4 bg-gray-50 rounded-lg space-y-3">
+                <p className="font-semibold">The correct answer is: {vocabularyData[currentWord]}</p>
+                {exampleSentences[currentWord] && (
+                  <p className="italic mt-2">
+                    Example: {exampleSentences[currentWord]}
+                  </p>
+                )}
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      </div>
+    );
+  };
 
 }
 ReactDOM.render(<SpanishQuiz />, document.getElementById('root'));
