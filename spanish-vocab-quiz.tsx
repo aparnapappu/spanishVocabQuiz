@@ -275,4 +275,4 @@ function SpanishVocabQuiz() {
 }
 export default SpanishVocabQuiz;
 
-ReactDOM.render(<SpanishVocabQuiz />, document.getElementById('root'));
+//ReactDOM.render(<SpanishVocabQuiz />, document.getElementById('root'));
