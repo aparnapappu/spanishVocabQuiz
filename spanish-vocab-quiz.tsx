@@ -145,7 +145,7 @@ const motivationalPhrases = [
 
 const emojis = ['🌟', '⭐', '🎉', '👏', '🎈', '🎊', '🌈', '✨', '💫', '🦄', '🌺', '🌸', '🎯', '🏆', '💪'];
 
-function SpanishVocabQuiz() {
+function SpanishQuiz() {
   const normalizeText = (text) => {
     return text
       .toLowerCase()
@@ -216,7 +216,7 @@ function SpanishVocabQuiz() {
     return (
        <div className="min-h-screen p-4">
             <div className="card max-w-lg mx-auto">
-                <h1 className="text-2xl font-bold text-center mb-4">Spanish Vocabulary Quiz</h1>
+                <h1 className="text-2xl font-bold text-center mb-4">Govind's Spanish Vocabulary Quiz</h1>
                 
                 <div className="text-center mb-4">
                     <h2 className="text-xl font-bold">¿Qué significa?</h2>
@@ -325,6 +325,6 @@ function SpanishVocabQuiz() {
   
 
 }
-export default SpanishVocabQuiz;
+export default SpanishQuiz;
 
 ReactDOM.render(<SpanishVocabQuiz />, document.getElementById('root'));
