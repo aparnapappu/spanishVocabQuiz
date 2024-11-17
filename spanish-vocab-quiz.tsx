@@ -179,7 +179,7 @@ const getRandomItem = (array) => {
   return array[Math.floor(Math.random() * array.length)];
 };
 
-const SpanishVocabQuiz = () => {
+function SpanishVocabQuiz () {
   const [currentWord, setCurrentWord] = useState('');
   const [userAnswer, setUserAnswer] = useState('');
   const [feedback, setFeedback] = useState('');
@@ -214,7 +214,7 @@ const SpanishVocabQuiz = () => {
     <div className="min-h-screen bg-gray-100 p-4">
       <Card className="max-w-lg mx-auto">
         <CardHeader>
-          <CardTitle className="text-2xl text-center">Spanish Vocabulary Quiz</CardTitle>
+          <CardTitle className="text-2xl text-center"> Govind's Spanish Vocabulary Quiz</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="text-center">
