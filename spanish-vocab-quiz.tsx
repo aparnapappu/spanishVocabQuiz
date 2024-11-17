@@ -272,3 +272,4 @@ const SpanishVocabQuiz = () => {
 };
 
 export default SpanishVocabQuiz;
+ReactDOM.render(<SpanishQuiz />, document.getElementById('root'));
