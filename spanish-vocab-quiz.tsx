@@ -133,12 +133,12 @@ const exampleSentences = {
 };
 
 const motivationalPhrases = [
-  "¡Sigue intentando! You're getting better!",
+  "¡Sigue intentando! You're getting better = keep going Govind!",
   "¡Casi! Keep practicing!",
   "¡Tú puedes! You can do it!",
   "Great effort! Let's try another one!",
   "Learning takes time - you're doing great!",
-  "That's a tricky one - keep going!",
+  "That's a tricky one, not bad  - keep going!",
   "Practice makes perfect! Let's continue!",
   "You're making progress! Keep it up!"
 ];
@@ -214,7 +214,7 @@ const SpanishVocabQuiz = () => {
     <div className="min-h-screen bg-gray-100 p-4">
       <Card className="max-w-lg mx-auto">
         <CardHeader>
-          <CardTitle className="text-2xl text-center">Spanish Vocabulary Quiz</CardTitle>
+          <CardTitle className="text-2xl text-center">Govind's Spanish Vocabulary Quiz</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="text-center">
